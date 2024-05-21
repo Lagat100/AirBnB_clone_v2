@@ -1,0 +1,19 @@
+
+# Remove installed packages
+sudo apt-get remove --purge nginx libgd3 libjbig0 libjpeg-turbo8 libjpeg8 libnginx-mod-http-image-filter libnginx-mod-http-xslt-filter libnginx-mod-mail libnginx-mod-stream libtiff5 libwebp6
+sudo apt-get autoremove
+sudo apt-get autoclean
+
+# Remove custom Nginx configurations
+sudo rm /etc/nginx/sites-available/your_custom_config
+sudo rm /etc/nginx/sites-enabled/your_custom_config
+
+# Reinstall Nginx to restore default configuration
+sudo apt-get install --reinstall nginx
+
+# Fix file permissions (example for /var/www/html/)
+sudo chown -R www-data:www-data /var/www/html/
+
+# List services to check for unexpected changes
+sudo systemctl list-units --type=service
+
